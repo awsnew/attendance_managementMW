@@ -20,7 +20,7 @@ public class AttendanceController {
     @Path("/register")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public WebReponse addLight(User user) {
+    public WebReponse register(User user) {
         WebReponse wp = new WebReponse();
         InMemoryDatabase.userDB.put(user.getUserId(), user);
         wp.setMessage("User Registered Successfully");
@@ -32,7 +32,7 @@ public class AttendanceController {
     @Path("/getUserAttendance/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public WebReponse getLight(@PathParam("userId") String userId) {
+    public WebReponse getUserAttendance(@PathParam("userId") String userId) {
         WebReponse wp = new WebReponse();
         
         User usr = InMemoryDatabase.userDB.get(userId);
@@ -51,7 +51,7 @@ public class AttendanceController {
     @Path("/getAllUser")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public WebReponse getAllLight() {
+    public WebReponse getAllUser() {
         WebReponse wp = new WebReponse();
         
         Collection<User> collUser = InMemoryDatabase.userDB.values();
@@ -68,7 +68,7 @@ public class AttendanceController {
     @Path("/markAttendance")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public WebReponse switchOnLight(UserAttendance userAttendance) {
+    public WebReponse markAttendance(UserAttendance userAttendance) {
         WebReponse wp = new WebReponse();
         User usr = InMemoryDatabase.userDB.get(userAttendance.getUserId());
         usr.getUserAttendance().add(userAttendance);
